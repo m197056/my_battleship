@@ -1,5 +1,5 @@
 
-from .. import ship, game_board, sprites
+import ship, game_board, sprites
 from typing import List, Tuple
 
 
