@@ -4,6 +4,8 @@ import sys
 import utilities
 import colors
 import sprites
+import utilities
+import human
 from game_board import GameBoard
 
 BLOCK_SIZE = 30
@@ -56,6 +58,11 @@ def main():
     themTextRect.centery = TOP_MARGIN // 2
     screen.blit(themText, themTextRect)
     # --------- END YOUR CODE ------------
+
+    # create a human player
+    player1 = human.Human()
+    player1.initialize()
+    player1.draw(my_board, their_board)
 
     # place the board on the screen
     their_board.draw(screen)
