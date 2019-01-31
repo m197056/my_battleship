@@ -1,5 +1,6 @@
 import pygame
 import colors
+import utilities
 
 NBLOCKS = 11
 
@@ -42,16 +43,41 @@ class GameBoard(pygame.sprite.Sprite):
 
         # Draw row and column header backgrounds
         #   Headers should be 1 block wide/tall and use color [header]
+        pygame.draw.rect(self.image, colors.header, (0, 0, self.width, self.y_step))
+        pygame.draw.rect(self.image, colors.header, (0, 0, self.x_step, self.height))
 
         # Draw grid lines use color [foreground]
+        for n in range(1, NBLOCKS):
+            pygame.draw.line(self.image, colors.foreground, (n*self.x_step, 0), (n*self.x_step, self.height))
+            pygame.draw.line(self.image, colors.foreground, (0, n * self.y_step), (self.width, n * self.y_step))
 
         # Draw row labels [A-J] centered in each header block
-        #    use color [foreground] and font [
+        #    use color [foreground] and font
+        letters = 'A B C D E F G H I J'.split(' ')
+
+        for n in range(0, NBLOCKS - 1):
+            text = utilities.create_text(letters[n], 24, colors.foreground)
+            textImg = text.get_rect()
+            textImg.centerx = 0.5 * self.x_step
+            textImg.centery = (n * self.y_step) + (1.5 * self.y_step)
+            self.image.blit(text, textImg)
 
         # Draw column labels [0-9] centered in each header block
         #    use color [foreground]
 
+        for n in range(0, NBLOCKS - 1):
+            text = utilities.create_text(str(n), 24, colors.foreground)
+            textImg = text.get_rect()
+            textImg.centerx = (n * self.x_step) + (1.5 * self.x_step)
+            textImg.centery = 0.5 * self.y_step
+            self.image.blit(text, textImg)
+
         # Draw border around the board use color [foreground]
+            # far right and bottom side are one less than width/height
+        pygame.draw.line(self.image, colors.foreground, (0, 0), (self.width - 1, 0))  # Top border
+        pygame.draw.line(self.image, colors.foreground, (0, self.height - 1), (self.width - 1, self.height-1))  # Bottom border
+        pygame.draw.line(self.image, colors.foreground, (self.width-1, 0), (self.width - 1, self.height - 1))  # Right border
+        pygame.draw.line(self.image, colors.foreground, (0, 0), (0, self.height - 1))  # Left border
 
         # --------- END YOUR CODE ------------
 

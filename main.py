@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 import sys
-
+import utilities
 import colors
 from game_board import GameBoard
 
@@ -38,11 +38,21 @@ def main():
 
     # --------- BEGIN YOUR CODE ----------
     # add titles above the game boards
+        # remember whole string for you and them, think about entire screen (including padding) for cartesian coords
 
     # draw 'YOU' centered above my_board
+    youText = utilities.create_text('YOU', 24, colors.foreground)
+    youTextRect = youText.get_rect()
+    youTextRect.centerx = PADDING + (NBLOCKS * BLOCK_SIZE // 2)
+    youTextRect.centery = TOP_MARGIN // 2
+    screen.blit(youText, youTextRect)
 
     # draw 'THEM' centered above their_board
-
+    themText = utilities.create_text('THEM', 24, colors.foreground)
+    themTextRect = themText.get_rect()
+    themTextRect.centerx = (2 * PADDING) + (NBLOCKS * BLOCK_SIZE) + (NBLOCKS * BLOCK_SIZE // 2)
+    themTextRect.centery = TOP_MARGIN // 2
+    screen.blit(themText, themTextRect)
     # --------- END YOUR CODE ------------
 
     # place the board on the screen
