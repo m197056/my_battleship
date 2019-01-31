@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 import sys
-import utilities
 import colors
 import sprites
 import utilities
@@ -20,7 +19,7 @@ def main():
                                                       BLOCK_SIZE * NBLOCKS + TOP_MARGIN + PADDING))
     screen.fill(colors.screen_bkgd)
     pygame.display.set_caption('USNA Battleship')
-    sprites.initialize()
+    sprites.initialize()    # Initializes the sprites
 
     # size of the game board figure based on BLOCK SIZE pixels
     board_dimension = (BLOCK_SIZE * NBLOCKS, BLOCK_SIZE * NBLOCKS)

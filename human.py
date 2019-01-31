@@ -10,20 +10,20 @@ class Human:
 
         # list of ship objects
         self._my_ships: List[ship.Ship] = []
-        # list of (row,col) coordinates
+        # list of (row,col) coordinates for misses
         self._my_misses: List[Tuple[int, int]] = []
-        # list of (row,col) coordinates
+        # list of (row,col) coordinates for hits
         self._my_hit: List[Tuple[int, int]] = []
-        # list of ship objects
+        # list of ship objects for sunken ships
         self._sunk_ships = []
-        # list of (row,col) coordinates
+        # list of (row,col) coordinates for their misses
         self._their_misses: List[Tuple[int, int]] = []
-        # list of (row,col) coordinates
+        # list of (row,col) coordinates for their hits
         self._their_hits: List[Tuple[int, int]] = []
 
         # the board matrix is a 10x10 structure with
         # pointers to ship objects. Initialize to all
-        # None values- no ships are on the board
+        # None values - no ships are on the board
         self._board_matrix = [[None] * 10 for _ in range(10)]
 
         # set to True if all opponent's ships are sunk
