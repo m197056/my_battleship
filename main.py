@@ -38,7 +38,7 @@ def main():
 
     # --------- BEGIN YOUR CODE ----------
     # add titles above the game boards
-        # remember whole string for you and them, think about entire screen (including padding) for cartesian coords
+    # remember whole string for you and them, think about entire screen (including padding) for cartesian coords
 
     # draw 'YOU' centered above my_board
     youText = utilities.create_text('YOU', 24, colors.foreground)
