@@ -12,7 +12,7 @@ PADDING = 10
 
 
 def main():
-    pygame.init()
+    pygame.init()   # initializes pygame functionality
     screen: pygame.Surface = pygame.display.set_mode(((BLOCK_SIZE * NBLOCKS) * 2 + PADDING * 3,
                                                       BLOCK_SIZE * NBLOCKS + TOP_MARGIN + PADDING))
     screen.fill(colors.screen_bkgd)

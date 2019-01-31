@@ -8,7 +8,7 @@ class GameBoard(pygame.sprite.Sprite):
     The Game Board is a 10x10 grid of spaces which may contain sprite images
     Columns are indexed by number [0-9] and rows are indexed by letter [A-J]
 
-          0|1|2|3|4|5|6|7|8|9|
+        _|0|1|2|3|4|5|6|7|8|9|
         A|_|_|_|_|_|_|_|_|_|_|
         B|_|_|_|_|_|_|_|_|_|_|
         C|_|_|_|_|_|_|_|_|_|_|
