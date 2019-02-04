@@ -56,6 +56,7 @@ def main():
     themTextRect.centerx = (2 * PADDING) + (NBLOCKS * BLOCK_SIZE) + (NBLOCKS * BLOCK_SIZE // 2)
     themTextRect.centery = TOP_MARGIN // 2
     screen.blit(themText, themTextRect)
+
     # --------- END YOUR CODE ------------
 
     # create a human player
@@ -66,6 +67,7 @@ def main():
     # place the board on the screen
     their_board.draw(screen)
     my_board.draw(screen)
+    screen.blit(sprites.ship_horizontal, (100, 100))
 
     while True:
         # wait for user to click 'X' button

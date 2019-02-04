@@ -1,5 +1,5 @@
 
-import ship, game_board, sprites
+import ship, game_board, sprites, random
 from typing import List, Tuple
 
 
@@ -14,7 +14,7 @@ class Human:
         self._my_misses: List[Tuple[int, int]] = []
         # list of (row,col) coordinates for hits
         self._my_hit: List[Tuple[int, int]] = []
-        # list of ship objects for sunken ships
+        # list of ship objects for opponents' sunken ships
         self._sunk_ships = []
         # list of (row,col) coordinates for their misses
         self._their_misses: List[Tuple[int, int]] = []

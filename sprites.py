@@ -28,12 +28,24 @@ sprites.append(ship_top)
 # --------- BEGIN YOUR CODE ----------
 
 # ---ship_left (30x30)---
+ship_left = pygame.Surface((30, 30))
+ship_left.blit(sprite_sheet, (0, 0), pygame.Rect(31, 0, 30, 30))
+sprites.append(ship_left)
 
 # ---ship_bottom (30x30)---
+ship_bottom = pygame.Surface((30, 30))
+ship_bottom.blit(sprite_sheet, (0, 0), pygame.Rect(62, 0, 30, 30))
+sprites.append(ship_bottom)
 
 # ---ship_right (30x30)---
+ship_right = pygame.Surface((30, 30))
+ship_right.blit(sprite_sheet, (0, 0), pygame.Rect(93, 0, 30, 30))
+sprites.append(ship_right)
 
 # ---ship_horizontal (30x30)---
+ship_horizontal = pygame.Surface((30, 30))
+ship_horizontal.blit(sprite_sheet, (0, 0), pygame.Rect(0, 31, 30, 30))
+sprites.append(ship_horizontal)
 
 # ---ship_vertical (30x30)---
 
