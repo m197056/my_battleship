@@ -5,7 +5,6 @@ from random import randint
 from typing import List, Tuple, Optional
 
 
-
 class Human:
     """ A human player"""
 
@@ -27,7 +26,6 @@ class Human:
 
         # the board matrix is a 10x10 structure with
         # pointers to ship objects. Initialize to all
-
         # None values- no ships are on the board
         self._board_matrix: List[List[Optional[ship.Ship]]] = [[None] * 10 for _ in range(10)]
 
@@ -50,25 +48,56 @@ class Human:
         * the ship type is just FYI, it is not used in the game *
         """
 
+        # 1.) create ship of the given length at a random (row,col)
+        #     position either horizontal or vertical
+        # 2.) check if this conflicts with any of the other ships by
+        #     by making sure that every entry in _board_matrix is None
+        # 2b.) If the ship is not valid, retry step 1
+        # 3.) If the ship is valid set the appropriate elements _board_matrix array
+        #     equal to the ship
+        # Example: to place a vertical destroyer at C2:
+        #    board_matrix[2][2] = my_ship
+        #    board_matrix[3][2] = my_ship
+
         for ship_length in [5, 4, 3, 3, 2]:
+            valid_place = False
+            while not valid_place:
+                # --------- BEGIN YOUR CODE ----------
+                hztlFlag = bool(randint(0, 1))  # True for horizontal, false for vertical
 
-            # --------- BEGIN YOUR CODE ----------
+                if hztlFlag:
+                    xloc = randint(0, 10 - ship_length)
+                    yloc = randint(0, 9)
+                    xend = xloc + ship_length - 1
+                    xvals = range(xloc, xend + 1)
+                    yvals = [yloc] * ship_length
 
-            pass  # remove this line
+                else:
+                    xloc = randint(0, 9)
+                    yloc = randint(0, 10 - ship_length)
+                    yend = yloc + ship_length - 1
+                    xvals = [xloc] * ship_length
+                    yvals = range(yloc, yend + 1)
 
-            # 1.) create ship of the given length at a random (row,col)
-            #     position either horizontal or vertical
+                valid = []
 
-            # 2.) check if this conflicts with any of the other ships by
-            #     by making sure that every entry in _board_matrix is None
+                for x in xvals:
+                    for y in yvals:
+                        if self._board_matrix[y][x] is None:
+                            valid.append('Yes')
+                        else:
+                            valid.append('No')
 
-            # 2b.) If the ship is not valid, retry step 1
+                if 'No' in valid:
+                    valid_place = False
+                else:
+                    valid_place = True
+                    my_ship = ship.Ship(ship_length, yloc, xloc, not hztlFlag)
+                    self._my_ships.append(my_ship)
+                    for x in xvals:
+                        for y in yvals:
+                            self._board_matrix[y][x] = my_ship
 
-            # 3.) If the ship is valid set the appropriate elements _board_matrix array
-            #     equal to the ship
-            # Example: to place a vertical destroyer at C2:
-            #    board_matrix[2][2] = my_ship
-            #    board_matrix[3][2] = my_ship
 
             # --------- END YOUR CODE ----------
 

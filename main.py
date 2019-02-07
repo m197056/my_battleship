@@ -67,7 +67,8 @@ def main():
     # place the board on the screen
     their_board.draw(screen)
     my_board.draw(screen)
-    screen.blit(sprites.ship_horizontal, (100, 100))
+
+    human.Human.print_board(player1)
 
     while True:
         # wait for user to click 'X' button
