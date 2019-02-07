@@ -1,6 +1,6 @@
-
 import ship, game_board, sprites
 from random import randint
+import time
 from typing import List, Tuple, Optional
 
 
@@ -11,16 +11,15 @@ class Human:
 
         # list of ship objects
         self._my_ships: List[ship.Ship] = []
-        # list of (row,col) coordinates for misses
+        # list of (row,col) coordinates
         self._my_misses: List[Tuple[int, int]] = []
-
-        # list of (row,col) coordinates for hits
-        self._my_hits: List[Tuple[int, int]] = []
+        # list of (row,col) coordinates
+        self._my_hit: List[Tuple[int, int]] = []
         # list of ship objects
         self._sunk_ships: List[ship.Ship] = []
         # list of (row,col) coordinates
         self._their_misses: List[Tuple[int, int]] = []
-        # list of (row,col) coordinates for their hits
+        # list of (row,col) coordinates
         self._their_hits: List[Tuple[int, int]] = []
 
         # the board matrix is a 10x10 structure with
@@ -47,48 +46,12 @@ class Human:
         * the ship type is just FYI, it is not used in the game *
         """
 
+        # --------- BEGIN YOUR CODE ----------
 
-        for ship_length in [5, 4, 3, 3, 2]:
-            valid_place = False
-            while not valid_place:
-                # --------- BEGIN YOUR CODE ----------
-                hztlFlag = bool(randint(0, 1))  # True for horizontal, false for vertical
+        # This is exactly the same as Human.initialize, just copy the code over
 
-                if hztlFlag:
-                    xloc = randint(0, 10 - ship_length)
-                    yloc = randint(0, 9)
-                    xend = xloc + ship_length - 1
-                    xvals = range(xloc, xend + 1)
-                    yvals = [yloc] * ship_length
-
-                else:
-                    xloc = randint(0, 9)
-                    yloc = randint(0, 10 - ship_length)
-                    yend = yloc + ship_length - 1
-                    xvals = [xloc] * ship_length
-                    yvals = range(yloc, yend + 1)
-
-                valid = []
-
-                for x in xvals:
-                    for y in yvals:
-                        if self._board_matrix[y][x] is None:
-                            valid.append('Yes')
-                        else:
-                            valid.append('No')
-
-                if 'No' in valid:
-                    valid_place = False
-                else:
-                    valid_place = True
-                    my_ship = ship.Ship(ship_length, yloc, xloc, not hztlFlag)
-                    self._my_ships.append(my_ship)
-                    for x in xvals:
-                        for y in yvals:
-                            self._board_matrix[y][x] = my_ship
-
-
-            # --------- END YOUR CODE ----------
+        # --------- END YOUR CODE ----------
+        pass
 
     def guess(self, row, col) -> Tuple[int, Optional[ship.Ship]]:
         """
@@ -112,30 +75,22 @@ class Human:
 
         # --------- BEGIN YOUR CODE ----------
 
-        # Hit logic:
-        # make sure this is a *new* hit (no double guesses)
-        # add to _their_hits
-        # hit the ship
-        # check if ship is sunk
-        # return either (1,None) or (2,my_ship)
-
-        # Miss logic:
-        # add to _their_misses
-        # return (0, None)
+        # This is exactly the same as Human.guess, just copy the code over
 
         # --------- END YOUR CODE ----------
 
 
     def take_turn(self, opponent):
         """
-        Prompt the user to guess a row and column. The user should enter a lower case letter
-        followed by a number. Updates self._my_hits, self._my_misses, and self._sunk_ships
+        Guess a new row,col space. This may be random or use a more sophisticated AI.
+        Updates self._my_hits, self._my_misses, and self._sunk_ships
         """
 
         # --------- BEGIN YOUR CODE ----------
 
-        # 1.) Prompt user for a guess. Valid input would be a string like c,4
-        #     If the guess is not valid ask the user to enter another guess
+        # 1.) Guess a random space that has not been guessed (or be more clever!)
+
+        # Steps 2-4 are the same as Human.take_turn
 
         # 2.) Call opponent.guess() to check wether the guess is a hit or miss
 
@@ -144,6 +99,9 @@ class Human:
         # 4.) If the sunk_ships array has 5 ships in it set self.complete to True
 
         # --------- END YOUR CODE ----------
+
+        # enforce a short delay to make the computer appear to "think" about its guess
+        time.sleep(0.5)
 
     def print_board(self):
         """
@@ -160,22 +118,12 @@ class Human:
             print("")
         print("=" * 10)
 
-    def draw(self, my_board: game_board.GameBoard, their_board: game_board.GameBoard):
+    def draw(self,
+             my_board: game_board.GameBoard,
+             their_board: game_board.GameBoard):
 
         """ Add sprites to the game board's to indicate
         ship positions, guesses, hits, etc """
 
         for my_ship in self._my_ships:
             my_ship.draw(my_board)
-        for miss in self._their_misses:
-            my_board.add_sprite(sprites.miss, miss)
-        for hit in self._their_hits:
-            my_board.add_sprite(sprites.hit, hit)
-
-            # draw hit indicators on their board
-        for miss in self._my_misses:
-            their_board.add_sprite(sprites.miss, miss)
-        for their_ship in self._sunk_ships:
-            their_ship.draw(their_board)
-        for hit in self._my_hits:
-            their_board.add_sprite(sprites.hit, hit)
