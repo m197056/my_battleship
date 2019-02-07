@@ -1,5 +1,6 @@
 import ship, game_board, sprites
 from random import randint
+import time
 from typing import List, Tuple, Optional
 
 
@@ -45,26 +46,12 @@ class Human:
         * the ship type is just FYI, it is not used in the game *
         """
 
-        for ship_length in [5, 4, 3, 3, 2]:
-            # --------- BEGIN YOUR CODE ----------
+        # --------- BEGIN YOUR CODE ----------
 
-            pass  # remove this line
+        # This is exactly the same as Human.initialize, just copy the code over
 
-            # 1.) create ship of the given length at a random (row,col)
-            #     position either horizontal or vertical
-
-            # 2.) check if this conflicts with any of the other ships by
-            #     by making sure that every entry in _board_matrix is None
-
-            # 2b.) If the ship is not valid, retry step 1
-
-            # 3.) If the ship is valid set the appropriate elements _board_matrix array
-            #     equal to the ship
-            # Example: to place a vertical destroyer at C2:
-            #    board_matrix[2][2] = my_ship
-            #    board_matrix[3][2] = my_ship
-
-            # --------- END YOUR CODE ----------
+        # --------- END YOUR CODE ----------
+        pass
 
     def guess(self, row, col) -> Tuple[int, Optional[ship.Ship]]:
         """
@@ -88,30 +75,22 @@ class Human:
 
         # --------- BEGIN YOUR CODE ----------
 
-        # Hit logic:
-        # make sure this is a *new* hit (no double guesses)
-        # add to _their_hits
-        # hit the ship
-        # check if ship is sunk
-        # return either (1,None) or (2,my_ship)
-
-        # Miss logic:
-        # add to _their_misses
-        # return (0, None)
+        # This is exactly the same as Human.guess, just copy the code over
 
         # --------- END YOUR CODE ----------
 
 
     def take_turn(self, opponent):
         """
-        Prompt the user to guess a row and column. The user should enter a lower case letter
-        followed by a number. Updates self._my_hits, self._my_misses, and self._sunk_ships
+        Guess a new row,col space. This may be random or use a more sophisticated AI.
+        Updates self._my_hits, self._my_misses, and self._sunk_ships
         """
 
         # --------- BEGIN YOUR CODE ----------
 
-        # 1.) Prompt user for a guess. Valid input would be a string like c,4
-        #     If the guess is not valid ask the user to enter another guess
+        # 1.) Guess a random space that has not been guessed (or be more clever!)
+
+        # Steps 2-4 are the same as Human.take_turn
 
         # 2.) Call opponent.guess() to check wether the guess is a hit or miss
 
@@ -120,6 +99,9 @@ class Human:
         # 4.) If the sunk_ships array has 5 ships in it set self.complete to True
 
         # --------- END YOUR CODE ----------
+
+        # enforce a short delay to make the computer appear to "think" about its guess
+        time.sleep(0.5)
 
     def print_board(self):
         """
