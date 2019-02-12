@@ -1,4 +1,5 @@
 import ship, game_board, sprites
+import string
 from random import randint
 from typing import List, Tuple, Optional
 
@@ -63,6 +64,7 @@ class Human:
             # Example: to place a vertical destroyer at C2:
             #    board_matrix[2][2] = my_ship
             #    board_matrix[3][2] = my_ship
+
 
             # --------- END YOUR CODE ----------
 
