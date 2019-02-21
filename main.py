@@ -73,7 +73,6 @@ def main():
     their_board.draw(screen)
     my_board.draw(screen)
 
-
     # play the game until one of the players is complete
     while not player1.complete and not player2.complete:
 
