@@ -1,5 +1,6 @@
 
 import ship, game_board, sprites
+import string
 from random import randint
 from typing import List, Tuple, Optional
 
@@ -86,6 +87,7 @@ class Human:
                     for x in xvals:
                         for y in yvals:
                             self._board_matrix[y][x] = my_ship
+
 
 
             # --------- END YOUR CODE ----------

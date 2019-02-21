@@ -1,5 +1,5 @@
 import game_board
-
+import sprites
 
 class Ship:
 
@@ -63,4 +63,10 @@ class Ship:
             game_board.GameBoard.add_sprite(board, sprites.ship_right, (self.row, self.col + self.length - 1))
 
         # --------- END YOUR CODE ----------
+
+    def hit(self):
+        """ Called by player object when the opponent guesses an un-hit space on the ship"""
+        self._hits += 1
+        if self._hits == self.length:
+            self.sunk = True
 
